@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>长沙万象城游玩攻略 - 六沟垅一日游</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+        
+        .date-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            margin-top: 15px;
+            font-weight: 500;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #667eea, #764ba2);
+            border-radius: 3px;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .timeline-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.2);
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 25px;
+            width: 15px;
+            height: 15px;
+            background: white;
+            border: 4px solid #667eea;
+            border-radius: 50%;
+        }
+        
+        .time-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .item-title {
+            font-size: 1.4em;
+            color: #333;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .item-title .emoji {
+            font-size: 1.3em;
+        }
+        
+        .item-desc {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .recommendations {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .rec-card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+        }
+        
+        .rec-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .rec-name {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .rec-price {
+            color: #f5576c;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+        
+        .rec-tag {
+            display: inline-block;
+            background: #e8f0fe;
+            color: #667eea;
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 0.8em;
+            margin-top: 8px;
+        }
+        
+        .tips-box {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border-left: 4px solid #ff9800;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        
+        .tips-box h3 {
+            color: #f57c00;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .tips-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .tips-box li {
+            padding: 5px 0;
+            color: #555;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .tips-box li::before {
+            content: '💡';
+            position: absolute;
+            left: 0;
+        }
+        
+        .budget-summary {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .budget-summary h3 {
+            color: #2e7d32;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .budget-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .budget-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        
+        .budget-label {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+        
+        .budget-value {
+            color: #2e7d32;
+            font-weight: 700;
+            font-size: 1.2em;
+        }
+        
+        .budget-total {
+            background: #2e7d32;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            margin-top: 15px;
+            display: inline-block;
+        }
+        
+        .budget-total .total-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        
+        .budget-total .total-value {
+            font-size: 2em;
+            font-weight: 700;
+        }
+        
+        .footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .map-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: transform 0.3s ease;
+        }
+        
+        .map-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .budget-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .recommendations {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎉 长沙万象城游玩攻略</h1>
+            <p>六沟垅地铁站 · 吃喝玩乐一日游</p>
+            <div class="date-badge">
+                📅 明天出发 | ⏰ 11:00 集合
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="timeline">
+                <!-- 第一站：集合 -->
+                <div class="timeline-item">
+                    <span class="time-badge">⏰ 11:00</span>
+                    <h2 class="item-title">
+                        <span class="emoji">🚇</span>
+                        六沟垅地铁站集合
+                    </h2>
+                    <p class="item-desc">
+                        地铁 4 号线/6 号线换乘站，交通便利。建议从 2 号口或 3 号口出站，靠近商业区。
+                    </p>
+                    <div class="map-box">
+                        <a href="https://uri.amap.com/marker?position=112.938,28.218&name=六沟垅地铁站" class="map-btn" target="_blank">
+                            📍 打开地图导航
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 第二站：午餐 -->
+                <div class="timeline-item">
+                    <span class="time-badge">⏰ 11:30 - 13:00</span>
+                    <h2 class="item-title">
+                        <span class="emoji">🍽️</span>
+                        午餐时间
+                    </h2>
+                    <p class="item-desc">
+                        六沟垅附近有多家特色餐厅，以下是精选推荐：
+                    </p>
+                    <div class="recommendations">
+                        <div class="rec-card">
+                            <div class="rec-name">费大厨辣椒炒肉</div>
+                            <div class="rec-price">💰 人均 60-80 元</div>
+                            <span class="rec-tag">🌶️ 湘菜经典</span>
+                            <span class="rec-tag">⭐ 必点菜</span>
+                        </div>
+                        <div class="rec-card">
+                            <div class="rec-name">炊烟小炒黄牛肉</div>
+                            <div class="rec-price">💰 人均 70-90 元</div>
+                            <span class="rec-tag">🥩 招牌牛肉</span>
+                            <span class="rec-tag">🔥 人气旺</span>
+                        </div>
+                        <div class="rec-card">
+                            <div class="rec-name">茶颜悦色</div>
+                            <div class="rec-price">💰 人均 15-20 元</div>
+                            <span class="rec-tag">🧋 奶茶</span>
+                            <span class="rec-tag">📸 打卡必备</span>
+                        </div>
+                        <div class="rec-card">
+                            <div class="rec-name">黑色经典臭豆腐</div>
+                            <div class="rec-price">💰 人均 10-15 元</div>
+                            <span class="rec-tag">🖤 长沙特色</span>
+                            <span class="rec-tag">🚶 小吃</span>
+                        </div>
+                        <div class="rec-card">
+                            <div class="rec-name">聚味瞿记</div>
+                            <div class="rec-price">💰 人均 80-100 元</div>
+                            <span class="rec-tag">🦞 海鲜湘菜</span>
+                            <span class="rec-tag">👨‍👩‍👧 适合聚餐</span>
+                        </div>
+                        <div class="rec-card">
+                            <div class="rec-name">笨萝卜浏阳菜馆</div>
+                            <div class="rec-price">💰 人均 50-70 元</div>
+                            <span class="rec-tag">🥬 家常菜</span>
+                            <span class="rec-tag">💯 性价比高</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 第三站：钟点房 -->
+                <div class="timeline-item">
+                    <span class="time-badge">⏰ 13:00 - 16:00</span>
+                    <h2 class="item-title">
+                        <span class="emoji">🏨</span>
+                        钟点房休息
+                    </h2>
+                    <p class="item-desc">
+                        饭后稍作休息，以下是附近性价比高的钟点房推荐（3 小时，50-90 元预算）：
+                    </p>
+                    <div class="recommendations">
+                        <div class="rec-card">
+                            <div class="rec-name">城市便捷酒店</div>
+                            <div class="rec-price">💰 钟点房 60-80 元/3h</div>
+                            <span class="rec-tag">📍 距地铁 500m</span>
+                            <span class="rec-tag">🧹 干净舒适</span>
+                        </div>
+                        <div class="rec-card">
+                            <div class="rec-name">尚客优酒店</div>
+                            <div class="rec-price">💰 钟点房 50-70 元/3h</div>
+                            <span class="rec-tag">📍 距地铁 300m</span>
+                            <span class="rec-tag">💰 经济实惠</span>
+                        </div>
+                        <div class="rec-card">
+                            <div class="rec-name">维也纳国际酒店</div>
+                            <div class="rec-price">💰 钟点房 80-90 元/3h</div>
+                            <span class="rec-tag">📍 距地铁 800m</span>
+                            <span class="rec-tag">⭐ 品质较好</span>
+                        </div>
+                        <div class="rec-card">
+                            <div class="rec-name">7 天连锁酒店</div>
+                            <div class="rec-price">💰 钟点房 50-60 元/3h</div>
+                            <span class="rec-tag">📍 距地铁 400m</span>
+                            <span class="rec-tag">🏪 连锁品牌</span>
+                        </div>
+                    </div>
+                    <p style="margin-top: 15px; color: #666; font-size: 0.9em;">
+                        💡 <strong>温馨提示：</strong>建议提前电话预约钟点房，周末可能较紧张。可在美团/携程等平台比价预订。
+                    </p>
+                </div>
+                
+                <!-- 第四站：万象城购物 -->
+                <div class="timeline-item">
+                    <span class="time-badge">⏰ 16:00 - 20:00</span>
+                    <h2 class="item-title">
+                        <span class="emoji">🛍️</span>
+                        万象城购物
+                    </h2>
+                    <p class="item-desc">
+                        休息完毕后，前往万象城开启购物模式！目标店铺：
+                    </p>
+                    <div class="recommendations">
+                        <div class="rec-card">
+                            <div class="rec-name">👕 优衣库 UNIQLO</div>
+                            <div class="rec-price">📍 万象城 L2 层</div>
+                            <span class="rec-tag">👖 基础款</span>
+                            <span class="rec-tag">💯 性价比高</span>
+                            <span class="rec-tag">🔄 试衣方便</span>
+                        </div>
+                        <div class="rec-card">
+                            <div class="rec-name">🦌 鹿岛生活馆</div>
+                            <div class="rec-price">📍 万象城 L3 层</div>
+                            <span class="rec-tag">🏠 家居生活</span>
+                            <span class="rec-tag">🎁 小物件</span>
+                            <span class="rec-tag">📸 好逛好拍</span>
+                        </div>
+                    </div>
+                    <p style="margin-top: 15px; color: #666;">
+                        💡 <strong>其他推荐店铺：</strong>UR、ZARA、H&M、名创优品、西西弗书店等
+                    </p>
+                    <div class="map-box">
+                        <a href="https://uri.amap.com/marker?position=112.940,28.220&name=长沙万象城" class="map-btn" target="_blank">
+                            📍 打开地图导航
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 第五站：晚餐 -->
+                <div class="timeline-item">
+                    <span class="time-badge">⏰ 18:00 - 19:30</span>
+                    <h2 class="item-title">
+                        <span class="emoji">🍜</span>
+                        晚餐时间
+                    </h2>
+                    <p class="item-desc">
+                        万象城内及周边有多家餐厅可选：
+                    </p>
+                    <div class="recommendations">
+                        <div class="rec-card">
+                            <div class="rec-name">太二酸菜鱼</div>
+                            <div class="rec-price">💰 人均 80-100 元</div>
+                            <span class="rec-tag">🐟 招牌酸菜鱼</span>
+                        </div>
+                        <div class="rec-card">
+                            <div class="rec-name">海底捞火锅</div>
+                            <div class="rec-price">💰 人均 100-120 元</div>
+                            <span class="rec-tag">🍲 服务好</span>
+                        </div>
+                        <div class="rec-card">
+                            <div class="rec-name">壹盏灯</div>
+                            <div class="rec-price">💰 人均 60-80 元</div>
+                            <span class="rec-tag">🌶️ 地道湘菜</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 预算汇总 -->
+            <div class="budget-summary">
+                <h3>💰 预算汇总（人均）</h3>
+                <div class="budget-grid">
+                    <div class="budget-item">
+                        <div class="budget-label">🍽️ 餐饮</div>
+                        <div class="budget-value">¥80-120</div>
+                    </div>
+                    <div class="budget-item">
+                        <div class="budget-label">🏨 钟点房</div>
+                        <div class="budget-value">¥50-90</div>
+                    </div>
+                    <div class="budget-item">
+                        <div class="budget-label">🚇 交通</div>
+                        <div class="budget-value">¥10-20</div>
+                    </div>
+                </div>
+                <div class="budget-total">
+                    <div class="total-label">总计（不含购物）</div>
+                    <div class="total-value">¥140-230</div>
+                </div>
+            </div>
+            
+            <!-- 温馨提示 -->
+            <div class="tips-box">
+                <h3>💡 温馨提示</h3>
+                <ul>
+                    <li>周末万象城人流量较大，建议提前预约餐厅</li>
+                    <li>钟点房最好提前电话确认有空房</li>
+                    <li>地铁 4 号线/6 号线运营时间：约 6:30-23:00</li>
+                    <li>记得带充电宝，拍照购物很耗电</li>
+                    <li>万象城停车场收费约 5 元/小时，购物可积分抵扣</li>
+                    <li>优衣库和鹿岛建议先逛鹿岛（3 楼），再逛优衣库（2 楼）</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>✨ 祝你玩得开心！有任何问题随时联系~</p>
+            <p style="margin-top: 10px; opacity: 0.7;">Generated by OpenClaw AI Assistant</p>
+        </div>
+    </div>
+</body>
+</html>
